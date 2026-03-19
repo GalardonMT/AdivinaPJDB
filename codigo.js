@@ -2,61 +2,85 @@
 
 window.addEventListener('load', async() => {    
     
-    let id = Math.floor(Math.random() * 43) + 1 ;
     
     // funcion para traer personaje de la api
-    const getPersonaje = (id) => {
-        return fetch(`https://dragonball-api.com/api/characters/${id}`);
-    };
-    
-    // esperar promesa
-    const res = await getPersonaje(id);
-    // transformar en json el res
-    const data = await res.json();
- 
-    //guardar informacion del personaje
-    const nombrePJ = data.name;
-    const imagenPJ = data.image;
-    
-    /* Forma antigua 
-    function getPersonaje(){
-        return fetch('https://dragonball-api.com/api/characters/1');
+    const getPersonaje = async(id) => {
+        id = Math.floor(Math.random() * 43) + 1 ;
+        
+        const url = fetch(`https://dragonball-api.com/api/characters/${id}`);
+        
+        try{ // try singnifica prueba este codigo
+            // esperar la respuesta de la api la promesa
+            const res = await url;
+            // transformamos la respuesta en formato JSON
+            const data = await res.json();
+            // retornamos datosss
+            return data;
+        }catch(error){ // captura el error
+            console.log("Error no se pudo conectar con la api.");
+        }
     }
+    
+    let data = await getPersonaje();
 
-    getPersonaje()
-        .then(function(value){
-            return value.json();
-        })
-        .then(function(value){
-            var personaje = value.name;
-            var imagen = value.image;
-        });
-    */
+    let nombrePJ = data.name;
+    let imagenPJ = data.image;
 
+    
     let form = document.querySelector("#formulario");
+    let botRendirse = document.querySelector("#rendirse");
+    let botReintentar = document.querySelector("#reintentar");
     let imagen = document.querySelector("#imagen");
-
+    
     // asigno la imagen de la api al elemento imagen con .src para darle formato
     imagen.src = imagenPJ;
-
-    form.addEventListener("submit",function(event){
-
+    imagen.width = '300';
+    imagen.height = '300';
+    
+    
+    //formulario se le agrega el evento submit
+    form.addEventListener('submit',function(event){
+        
+        event.preventDefault(); // se ejecuta siempre para no recargar la pagina
         
         let intento = event.target.input.value;
-        
         // Comparacion estricta
         if(nombrePJ.toLowerCase().trim() === intento.toLowerCase().trim()){
-            console.log(true);
+            console.log("true");
         }else{
-            event.preventDefault(); // recargar pagina
-            console.log(false);
+            console.log(nombrePJ);
+            console.log("false");
         }
     });
+    
+    
+    // boton de rendirse
+    botRendirse.addEventListener('click',function(){
+        //revela el nombre del personaje
+        document.querySelector('#error_nombre').innerHTML = '<br> Nombre del personaje: ' + nombrePJ;
+        document.querySelector('#reintentar').innerHTML = '<input type="submit" value="reintentar" id="reintentar">';
+        //ocultar botones con css simple
+        document.querySelector('#enviar').style.display = 'none';
+        document.querySelector('#rendirse').style.display = 'none';
+    });
+    
+    // boton de reintentar
+    botReintentar.addEventListener('click', async () => {
+        // recargar pj
+        data = await getPersonaje();
 
-    // faltante: que funcione sin recargar pagina cuando ganes. 
-    // mensaje de acertaste personaje y que se pueda seguir jugando
-    // no se repitan los pjs
-    // boton rendirse, revela el nombre del pj - seguir jugando
+        nombrePJ = data.name;
+        imagenPJ = data.image;
+        imagen.src = imagenPJ;
+        imagen.width = '300';
+        imagen.height = '300';
 
+        document.querySelector('#error_nombre').innerHTML = '';
+        document.querySelector('#reintentar').innerHTML = '';
+        //mostrar botones con css simple
+        document.querySelector('#enviar').style.display = 'block';
+        document.querySelector('#rendirse').style.display = 'block';
+    });
+    
 });
 
