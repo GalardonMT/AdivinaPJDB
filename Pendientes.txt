@@ -1,3 +1,2 @@
-    // faltante: que funcione sin recargar pagina cuando ganes. 
     // mensaje de acertaste personaje y que se pueda seguir jugando
     // no se repitan los pjs
