@@ -1,2 +1,4 @@
-    // mensaje de acertaste personaje y que se pueda seguir jugando
-    // no se repitan los pjs
+agregar css
+agregar puntaje
+tener 3 oportunidades para acertar el nombre
+mencionar error al adivinar y pasar al siguiente pj
