@@ -58,8 +58,8 @@ window.addEventListener('load', async() => {
     
     // verificar la longitud del historial/*
     function verificacionHistorial(historialPJ){
-        // aqui se cambia el limite de personajes actualmente 42
-        return historialPJ.length >= 42;
+        // aqui se cambia el limite de personajes actualmente 41
+        return historialPJ.length >= 41;
     };
 
 
@@ -116,7 +116,7 @@ window.addEventListener('load', async() => {
         let intento = event.target.input.value;
         // Comparacion estricta
         if(nombrePJ.toLowerCase().trim() === intento.toLowerCase().trim()){
-            document.querySelector('#error_nombre').innerHTML = '';
+            document.querySelector('#error_nombre').innerHTML = 'Ingrese algun nombre';
             //alert("Acertaste");
             recargarPJ();
             //elimina lo que contiene dentro el input
@@ -130,7 +130,7 @@ window.addEventListener('load', async() => {
 
     function restaurarBotonesUI(){
         document.getElementById("input").value = '';
-        document.querySelector('#error_nombre').innerHTML = '';
+        document.querySelector('#error_nombre').innerHTML = 'Ingrese algun nombre';
         //mostrar botones con css simple
         document.querySelector('#reintentar').style.display = 'none';
         document.querySelector('#input').style.display = '';
