@@ -59,7 +59,7 @@ window.addEventListener('load', async() => {
     // verificar la longitud del historial/*
     function verificacionHistorial(historialPJ){
         // aqui se cambia el limite de personajes actualmente 42
-        return historialPJ.length >= 2;
+        return historialPJ.length >= 42;
     };
 
 
