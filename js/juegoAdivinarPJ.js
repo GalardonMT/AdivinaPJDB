@@ -6,7 +6,9 @@ window.addEventListener('load', async() => {
     let form = document.querySelector("#formulario");
     let botRendirse = document.querySelector("#rendirse");
     let botReintentar = document.querySelector("#reintentar");
+    let botReiniciar = document.querySelector("#reiniciar");
     let imagen = document.querySelector("#imagen");
+    let contador = 1;
     let nombrePJ;
     let imagenPJ;
     const historialPJ = [];
@@ -39,9 +41,8 @@ window.addEventListener('load', async() => {
         
         console.log(historialPJ);
         
+        //se realiza un fetch con la id que no se repite y se guarda en la constante url
         const url = fetch(`https://dragonball-api.com/api/characters/${id}`);
-
-
 
         try{ // try singnifica prueba este codigo
             // esperar la respuesta de la api la promesa
@@ -59,7 +60,7 @@ window.addEventListener('load', async() => {
     // verificar la longitud del historial/*
     function verificacionHistorial(historialPJ){
         // aqui se cambia el limite de personajes actualmente 42
-        return historialPJ.length >= 41;
+        return historialPJ.length >= 2;
     };
 
 
@@ -68,10 +69,14 @@ window.addEventListener('load', async() => {
         // este if es equivalente a (verificacionHistorial(historialPJ) == true)
         if(verificacionHistorial(historialPJ)){
             document.querySelector('#resultado').innerHTML = '<h1>El juego ha terminado</h1>';
+            document.querySelector('#resultado').innerHTML = '<h1>Tu record fué de ' + contador + ' puntos!</h1>';
+            document.querySelector('#personaje').style.display = 'none';
+            document.querySelector('#scoreboard').style.display = 'none';
             document.querySelector('#reintentar').style.display = 'none';
             document.querySelector('#input').style.display = 'none';
             document.querySelector('#enviar').style.display = 'none';
             document.querySelector('#rendirse').style.display = 'none';
+            document.querySelector('#imagen').style.display = 'none';
             return true;
         }else{
             return false;
@@ -100,10 +105,14 @@ window.addEventListener('load', async() => {
     };
 
     recargarPJ();
+
+    function scoreboard(){
+        document.querySelector('#scoreboard').innerHTML = 'Scoreboard: ' + contador + '/41';
+        return contador++;
+    }
     
     //formulario se le agrega el evento submit
     form.addEventListener('submit',function(event){
-        
         event.preventDefault(); // se ejecuta siempre para no recargar la pagina
         
         let intento = event.target.input.value;
@@ -113,21 +122,47 @@ window.addEventListener('load', async() => {
             recargarPJ();
             //elimina lo que contiene dentro el input
             document.getElementById("input").value = '';
-            console.log("true");
+            scoreboard();  
         }else{
             console.log(nombrePJ);
-            console.log("false");
         }
     });
 
+    function restaurarUIReintento(){
+        document.getElementById("input").value = '';
+        document.querySelector('#error_nombre').innerHTML = '';
+        //mostrar botones con css simple
+        document.querySelector('#reintentar').style.display = 'none';
+        document.querySelector('#input').style.display = '';
+        document.querySelector('#enviar').style.display = '';
+        document.querySelector('#rendirse').style.display = '';
+        document.querySelector('#reiniciar').style.display = '';
+    }
+
+    botReiniciar.addEventListener('click', async function(){
+        historialPJ.length = 0;
+        contador = 0;
+
+        document.querySelector('#resultado').innerHTML = '';
+        document.querySelector('#personaje').style.display = '';
+        document.querySelector('#scoreboard').style.display = '';
+        document.querySelector('#imagen').style.display = '';
+
+        scoreboard();
+        await recargarPJ();
+        restaurarUIReintento();
+    });
 
     // boton de rendirse
     botRendirse.addEventListener('click',function(){
+        //elimina lo que contiene dentro el input
+        document.getElementById("input").value = '';
         console.log(nombrePJ);
         //revela el nombre del personaje
         document.querySelector('#error_nombre').innerHTML = 'Nombre del personaje: ' + nombrePJ;
         //ocultar botones con css simple
         document.querySelector('#reintentar').style.display = '';
+        document.querySelector('#reiniciar').style.display = 'none';
         document.querySelector('#input').style.display = 'none';
         document.querySelector('#enviar').style.display = 'none';
         document.querySelector('#rendirse').style.display = 'none';
@@ -140,13 +175,7 @@ window.addEventListener('load', async() => {
             return;
         }
         await recargarPJ();
-        document.querySelector('#error_nombre').innerHTML = '';
-        //mostrar botones con css simple
-        document.querySelector('#reintentar').style.display = 'none';
-        document.querySelector('#input').style.display = '';
-        document.querySelector('#enviar').style.display = '';
-        document.querySelector('#rendirse').style.display = '';
+        restaurarUIReintento();
     });
-    
 });
 

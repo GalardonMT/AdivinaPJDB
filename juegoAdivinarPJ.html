@@ -5,24 +5,36 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Adivina PJZ</title>
     <script type="text/javascript" src="js/juegoAdivinarPJ.js"></script>
+    <link rel="stylesheet" href="css/juegoAdivinarPJ.css">
 </head>
 <body>
 
-    <h1 id="titulo">Adivina el personaje de Dragon Ball Z</h1>
     <div class="box dashed">
 
-        <span id="resultado"></span>
-        <h2 class="h2">Personaje: </h2>
-        <img id="imagen" src="">
+        <div id="cabecera">
+            <h1 id="titulo">Adivina el personaje de Dragon Ball Z</h1>
+
+            <h2 class="h2" id="scoreboard">Scoreboard: 0/41</h2>
+            <span id="resultado"></span>
+            <h2 class="h2" id="personaje">Personaje: </h2>
+
+            <img id="imagen" src="">
+        </div>
 
         <form method="post" id="formulario" class="form">
-            <input type="text" id="input">
-            <span id="error_nombre"></span><br>
-            <input type="submit" value="enviar" id="enviar">
+            <div class="contenedortext">
+                <input type="text" id="input" class="input" name="input" autocomplete="off" required>
+                <span id="error_nombre"></span><br>
+            </div>
+            <div class="controles">
+                <input type="submit" value="enviar" id="enviar" class="boton">
+                <input type="button" value="rendirse" id="rendirse" class="boton">
+                <input type="button" value="reintentar" id="reintentar" class="boton" style="display: none;" >
+                <br>
+                <input type="reiniciar" value="reiniciar" id="reiniciar" class="boton">
+            </div>
         </form>
         
-        <input type="submit" value="rendirse" id="rendirse">
-        <input type="submit" value="reintentar" id="reintentar" style="display: none;" >
     </div>
 
 </body>
