@@ -6,7 +6,6 @@ window.addEventListener('load', async() => {
     let form = document.querySelector("#formulario");
     let botRendirse = document.querySelector("#rendirse");
     let botReintentar = document.querySelector("#reintentar");
-    let botReiniciar = document.querySelector("#reiniciar");
     let imagen = document.querySelector("#imagen");
     let contador = 1;
     let nombrePJ;
@@ -70,9 +69,9 @@ window.addEventListener('load', async() => {
         if(verificacionHistorial(historialPJ)){
             document.querySelector('#resultado').innerHTML = '<h1>El juego ha terminado</h1>';
             document.querySelector('#resultado').innerHTML = '<h1>Tu record fué de ' + contador + ' puntos!</h1>';
+            document.querySelector('#reintentar').style.display = '';
             document.querySelector('#personaje').style.display = 'none';
             document.querySelector('#scoreboard').style.display = 'none';
-            document.querySelector('#reintentar').style.display = 'none';
             document.querySelector('#input').style.display = 'none';
             document.querySelector('#enviar').style.display = 'none';
             document.querySelector('#rendirse').style.display = 'none';
@@ -85,8 +84,7 @@ window.addEventListener('load', async() => {
     
     async function recargarPJ() {
         
-        let termino = terminarJuego();
-        if(termino == true){
+        if(terminarJuego()){
             return;
         }
 
@@ -118,17 +116,19 @@ window.addEventListener('load', async() => {
         let intento = event.target.input.value;
         // Comparacion estricta
         if(nombrePJ.toLowerCase().trim() === intento.toLowerCase().trim()){
+            document.querySelector('#error_nombre').innerHTML = '';
             //alert("Acertaste");
             recargarPJ();
             //elimina lo que contiene dentro el input
             document.getElementById("input").value = '';
             scoreboard();  
         }else{
+            document.querySelector('#error_nombre').innerHTML = 'Nombre incorrecto, ingrese otro.';
             console.log(nombrePJ);
         }
     });
 
-    function restaurarUIReintento(){
+    function restaurarBotonesUI(){
         document.getElementById("input").value = '';
         document.querySelector('#error_nombre').innerHTML = '';
         //mostrar botones con css simple
@@ -136,46 +136,44 @@ window.addEventListener('load', async() => {
         document.querySelector('#input').style.display = '';
         document.querySelector('#enviar').style.display = '';
         document.querySelector('#rendirse').style.display = '';
-        document.querySelector('#reiniciar').style.display = '';
     }
 
-    botReiniciar.addEventListener('click', async function(){
-        historialPJ.length = 0;
-        contador = 0;
+    function ocultarBotonesUI(){
+        //ocultar botones con css simple
+        document.querySelector('#reintentar').style.display = '';
+        document.querySelector('#input').style.display = 'none';
+        document.querySelector('#enviar').style.display = 'none';
+        document.querySelector('#rendirse').style.display = 'none';
+    }
 
+    
+    // boton de rendirse
+    botRendirse.addEventListener('click',function(){
+        historialPJ.length = 0;
+        console.log(nombrePJ);
+        //elimina lo que contiene dentro el input
+        document.getElementById("input").value = '';
+        //revela el nombre del personaje
+        document.querySelector('#error_nombre').innerHTML = 'Nombre del personaje: ' + nombrePJ;
+        ocultarBotonesUI();
+    });
+    
+
+    // boton de reintentar
+    botReintentar.addEventListener('click',async function(){
         document.querySelector('#resultado').innerHTML = '';
         document.querySelector('#personaje').style.display = '';
         document.querySelector('#scoreboard').style.display = '';
         document.querySelector('#imagen').style.display = '';
-
-        scoreboard();
-        await recargarPJ();
-        restaurarUIReintento();
-    });
-
-    // boton de rendirse
-    botRendirse.addEventListener('click',function(){
-        //elimina lo que contiene dentro el input
-        document.getElementById("input").value = '';
-        console.log(nombrePJ);
-        //revela el nombre del personaje
-        document.querySelector('#error_nombre').innerHTML = 'Nombre del personaje: ' + nombrePJ;
-        //ocultar botones con css simple
-        document.querySelector('#reintentar').style.display = '';
-        document.querySelector('#reiniciar').style.display = 'none';
-        document.querySelector('#input').style.display = 'none';
-        document.querySelector('#enviar').style.display = 'none';
-        document.querySelector('#rendirse').style.display = 'none';
-    });
-    
-    // boton de reintentar
-    botReintentar.addEventListener('click',async function(){
+        historialPJ.length = 0;
+        contador = 0;
         let termino = terminarJuego();
         if(termino == true){
             return;
         }
+        scoreboard();
         await recargarPJ();
-        restaurarUIReintento();
+        restaurarBotonesUI();
     });
 });
 

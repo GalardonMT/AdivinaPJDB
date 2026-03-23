@@ -16,22 +16,53 @@ body {
   margin: 5px 5px;
 }
 
-#reiniciar {
-  background-color: #c51818;
-  width: 155px;
+#enviar {
+	box-shadow: 0px 10px 14px -7px #3dc21b;
+	background:linear-gradient(to bottom, #44c767 5%, #5cbf2a 100%);
+	background-color:#44c767;
+	border-radius:8px;
+	display:inline-block;
+	cursor:pointer;
+	color:#ffffff;
+	font-family:Arial;
+	font-size:20px;
+	font-weight:bold;
+	padding:13px 32px;
+	text-decoration:none;
+	text-shadow:0px 1px 0px #2f6627;
+}
+#enviar:hover {
+	background:linear-gradient(to bottom, #5cbf2a 5%, #44c767 100%);
+	background-color:#5cbf2a;
+}
+#enviar:active {
+	position:relative;
+	top:1px;
 }
 
-#reiniciar:hover {
-  background-color: #971313;
-}
 
-#reintentar {
-  background-color: #96786F;
-  width: 195px;
+#reintentar, #rendirse {
+	box-shadow: 0px 10px 14px -7px #8a2a21;
+	background:linear-gradient(to bottom, #c62d1f 5%, #f24437 100%);
+	background-color:#c62d1f;
+	border-radius:8px;
+	display:inline-block;
+	cursor:pointer;
+	color:#ffffff;
+	font-family:Arial;
+	font-size:20px;
+	font-weight:bold;
+	padding:13px 32px;
+	text-decoration:none;
+	text-shadow:0px 1px 0px #810e05;
 }
-
-#reintentar:hover {
-  background-color: #856a62;
+#reintentar:hover, #rendirse:hover {
+	background:linear-gradient(to bottom, #f24437 5%, #c62d1f 100%);
+	background-color:#f24437;
+}
+#reintentar:active, #rendirse:active {
+	position:relative;
+	top:1px;
 }
 
 .boton:hover {

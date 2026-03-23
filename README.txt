@@ -19,9 +19,9 @@ El juego está desarrollado con HTML, CSS y JavaScript y está pensado como prá
 ## Mejoras pendientes
 
 - [ ] Agregar estilos CSS más elaborados para mejorar la presentación.
-- [ ] Agregar sistema de puntaje para registrar aciertos.
+- [✓] Agregar sistema de puntaje para registrar aciertos.
 - [ ] Limitar a 3 oportunidades para acertar el nombre de cada personaje.
-- [ ] Mostrar un mensaje de error al fallar y pasar automáticamente al siguiente personaje.
+- [✓] Mostrar un mensaje de error al fallar y pasar automáticamente al siguiente personaje.
 
 ## Requisitos
 
