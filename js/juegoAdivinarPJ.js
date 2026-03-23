@@ -7,10 +7,21 @@ window.addEventListener('load', async() => {
     let botRendirse = document.querySelector("#rendirse");
     let botReintentar = document.querySelector("#reintentar");
     let imagen = document.querySelector("#imagen");
+    let errorNombre = document.querySelector('#error_nombre');
     let contador = 1;
     let nombrePJ;
     let imagenPJ;
     const historialPJ = [];
+
+    function mostrarMensajeGuia() {
+        errorNombre.innerHTML = 'Ingrese su nombre';
+        errorNombre.classList.remove('error');
+    }
+
+    function mostrarMensajeError(texto) {
+        errorNombre.innerHTML = texto;
+        errorNombre.classList.add('error');
+    }
 
     
     // funcion para traer personaje de la api FETCH
@@ -103,6 +114,7 @@ window.addEventListener('load', async() => {
     };
 
     recargarPJ();
+    mostrarMensajeGuia();
 
     function scoreboard(){
         document.querySelector('#scoreboard').innerHTML = 'Scoreboard: ' + contador + '/41';
@@ -116,21 +128,21 @@ window.addEventListener('load', async() => {
         let intento = event.target.input.value;
         // Comparacion estricta
         if(nombrePJ.toLowerCase().trim() === intento.toLowerCase().trim()){
-            document.querySelector('#error_nombre').innerHTML = 'Ingrese algun nombre';
+            mostrarMensajeGuia();
             //alert("Acertaste");
             recargarPJ();
             //elimina lo que contiene dentro el input
             document.getElementById("input").value = '';
             scoreboard();  
         }else{
-            document.querySelector('#error_nombre').innerHTML = 'Nombre incorrecto, ingrese otro.';
+            mostrarMensajeError('Nombre incorrecto, ingrese otro.');
             console.log(nombrePJ);
         }
     });
 
     function restaurarBotonesUI(){
         document.getElementById("input").value = '';
-        document.querySelector('#error_nombre').innerHTML = 'Ingrese algun nombre';
+        mostrarMensajeGuia();
         //mostrar botones con css simple
         document.querySelector('#reintentar').style.display = 'none';
         document.querySelector('#input').style.display = '';
@@ -154,7 +166,7 @@ window.addEventListener('load', async() => {
         //elimina lo que contiene dentro el input
         document.getElementById("input").value = '';
         //revela el nombre del personaje
-        document.querySelector('#error_nombre').innerHTML = 'Nombre del personaje: ' + nombrePJ;
+        mostrarMensajeError('Nombre del personaje: ' + nombrePJ);
         ocultarBotonesUI();
     });
     
