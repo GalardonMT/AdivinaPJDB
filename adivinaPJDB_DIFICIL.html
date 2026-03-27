@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Adivina PJZ Dificil</title>
+    <script type="text/javascript" src="js/juegoAdivinarPJ_DIFICIL.js"></script>
+    <link rel="stylesheet" href="css/juegoAdivinarPJ.css">
+</head>
+<body>
+
+    <div class="box dashed">
+        <a href="index.html"><input type="button" value="Volver" id="volver" class="boton"></a>
+        <div id="cabecera">
+            <h1 id="titulo">Adivina el personaje de Dragon Ball Z</h1>
+
+            <h2 class="h2" id="scoreboard">Scoreboard: 0/30</h2>
+            <span id="resultado"></span>
+            <h2 class="h2" id="personaje">Personaje: </h2>
+
+            <img id="imagen" src="">
+        </div>
+
+        <form method="post" id="formulario" class="form">
+            <div class="contenedortext">
+                <span id="error_nombre">Ingrese algun nombre</span><br>
+                <input type="text" id="input" class="input" name="input" autocomplete="off" required>
+            </div>
+            <div class="controles">
+                <input type="submit" value="Enviar" id="enviar" class="boton">
+                <input type="button" value="Rendirse" id="rendirse" class="boton">
+                <input type="button" value="Reintentar" id="reintentar" class="boton" style="display: none;" >
+            </div>
+        </form>
+        
+    </div>
+
+</body>
+</html>

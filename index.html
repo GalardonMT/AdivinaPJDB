@@ -8,32 +8,18 @@
     <link rel="stylesheet" href="css/juegoAdivinarPJ.css">
 </head>
 <body>
-
     <div class="box dashed">
 
         <div id="cabecera">
             <h1 id="titulo">Adivina el personaje de Dragon Ball Z</h1>
 
-            <h2 class="h2" id="scoreboard">Scoreboard: 0/41</h2>
-            <span id="resultado"></span>
-            <h2 class="h2" id="personaje">Personaje: </h2>
-
-            <img id="imagen" src="">
+            <h2 class="h2" id="modos">Elige entre los modos</h2>
         </div>
-
-        <form method="post" id="formulario" class="form">
-            <div class="contenedortext">
-                <span id="error_nombre">Ingrese algun nombre</span><br>
-                <input type="text" id="input" class="input" name="input" autocomplete="off" required>
-            </div>
-            <div class="controles">
-                <input type="submit" value="Enviar" id="enviar" class="boton">
-                <input type="button" value="Rendirse" id="rendirse" class="boton">
-                <input type="button" value="Reintentar" id="reintentar" class="boton" style="display: none;" >
-            </div>
-        </form>
-        
+        <div>
+            <a href="adivinaPJDB_FACIL.html"><input type="button" value="Facil" id="volver" class="boton"></a>
+            <a href="adivinaPJDB_MEDIO.html"><input type="button" value="Medio" id="volver" class="boton"></a>
+            <a href="adivinaPJDB_DIFICIL.html"><input type="button" value="Dificil" id="volver" class="boton"></a>
+        </div>
     </div>
-
 </body>
 </html>

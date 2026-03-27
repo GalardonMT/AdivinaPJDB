@@ -88,8 +88,8 @@ window.addEventListener('load', async() => {
 
     // verificar la longitud del historial/*
     function verificacionHistorial(historialPJ){
-        // aqui se cambia el limite de personajes actualmente 41
-        return historialPJ.length >= 41;
+        // aqui se cambia el limite de personajes actualmente 30, el maximo es 41
+        return historialPJ.length >= 30;
     };
 
     function terminarJuego(){
