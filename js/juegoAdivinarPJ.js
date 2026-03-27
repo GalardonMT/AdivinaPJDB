@@ -14,9 +14,11 @@ window.addEventListener('load', async() => {
     const historialPJ = [];
 
     function mostrarMensajeGuia() {
+        document.querySelector('#error_nombre').style.display = '';
         errorNombre.innerHTML = 'Ingrese su nombre';
         errorNombre.classList.remove('error');
     }
+
 
     function mostrarMensajeError(texto) {
         errorNombre.innerHTML = texto;
@@ -66,13 +68,29 @@ window.addEventListener('load', async() => {
         };
     };
     
-    
+    const traducciones = { 
+        "Chi-Chi": ["milk", "chichi", "chi chi"], 
+        "Piccolo": ["picoro"], 
+        "Mr. Satan": ["mister satan", "mr satan", "mrsatan"], 
+        "Android 20 (Dr. Gero)": ["android 20", "androide 20", "drgero", "dr gero", "dr maki gero", "maki gero", "makigero", "gero"],
+        "Zeno": ["zeno sama"], 
+        "Android 13" : ["androide 13"], 
+        "Android 14" : ["androide 14"],
+        "Android 15" : ["androide 15"],
+        "Android 16" : ["androide 16"],
+        "Android 17" : ["androide 17"],
+        "Android 19" : ["androide 19"],
+        "Celula" : ["cell"],
+        "Kibito-Shin" : ["kibitoshin", "kibito shin"],
+        "Master Roshi" : ["maestro roshi", "roshi"],
+        "Marcarita " : ["marcarita"],
+    };
+
     // verificar la longitud del historial/*
     function verificacionHistorial(historialPJ){
         // aqui se cambia el limite de personajes actualmente 41
         return historialPJ.length >= 41;
     };
-
 
     function terminarJuego(){
         // Verificar historial de personajes
@@ -84,6 +102,7 @@ window.addEventListener('load', async() => {
             document.querySelector('#personaje').style.display = 'none';
             document.querySelector('#scoreboard').style.display = 'none';
             document.querySelector('#input').style.display = 'none';
+            document.querySelector('#error_nombre').style.display = 'none';
             document.querySelector('#enviar').style.display = 'none';
             document.querySelector('#rendirse').style.display = 'none';
             document.querySelector('#imagen').style.display = 'none';
@@ -125,9 +144,12 @@ window.addEventListener('load', async() => {
     form.addEventListener('submit',function(event){
         event.preventDefault(); // se ejecuta siempre para no recargar la pagina
         
-        let intento = event.target.input.value;
+        let intento = event.target.input.value.toLowerCase().trim();
+
+        let opcionesCorrectas = traducciones[nombrePJ] ? [...traducciones[nombrePJ], nombrePJ.toLowerCase()] : [nombrePJ.toLowerCase()];
+
         // Comparacion estricta
-        if(nombrePJ.toLowerCase().trim() === intento.toLowerCase().trim()){
+        if(opcionesCorrectas.includes(intento)){
             mostrarMensajeGuia();
             //alert("Acertaste");
             recargarPJ();
