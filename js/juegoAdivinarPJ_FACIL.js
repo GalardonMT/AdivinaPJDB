@@ -96,6 +96,7 @@ window.addEventListener('load', async() => {
         // Verificar historial de personajes
         // este if es equivalente a (verificacionHistorial(historialPJ) == true)
         if(verificacionHistorial(historialPJ)){
+            document.querySelector('#resultado').style.display = '';
             document.querySelector('#resultado').innerHTML = '<h1>El juego ha terminado</h1>';
             document.querySelector('#resultado').innerHTML = '<h1>Tu record fué de ' + contador + ' puntos!</h1>';
             document.querySelector('#reintentar').style.display = '';
@@ -136,7 +137,7 @@ window.addEventListener('load', async() => {
     mostrarMensajeGuia();
 
     function scoreboard(){
-        document.querySelector('#scoreboard').innerHTML = 'Scoreboard: ' + contador + '/41';
+        document.querySelector('#scoreboard').innerHTML = 'Scoreboard: ' + contador + '/10';
         return contador++;
     }
     
