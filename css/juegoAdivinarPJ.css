@@ -154,6 +154,74 @@ form {
 	gap: 10px;
 }
 
+/* INDEX: selección de modo */
+
+#modos {
+	margin-top: 12px;
+	font-size: clamp(1.1rem, 2.8vw, 1.4rem);
+	text-transform: uppercase;
+	letter-spacing: 1px;
+	color: #e96100;
+	text-shadow: 1px 1px 0 #fff6cc, 3px 3px 0 rgba(24, 20, 14, 0.2);
+}
+
+#difultades {
+	margin-top: 26px;
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: center;
+	gap: 16px;
+}
+
+#difultades a {
+	text-decoration: none;
+}
+
+.facil,
+.medio,
+.dificil {
+	min-width: 140px;
+	border: none;
+	border-radius: 999px;
+	padding: 14px 28px;
+	display: inline-block;
+	font-family: 'Nunito', sans-serif;
+	font-size: clamp(1rem, 2.6vw, 1.15rem);
+	font-weight: 900;
+	text-transform: uppercase;
+	color: #ffffff;
+	cursor: pointer;
+	box-shadow: 0 10px 0 rgba(11, 35, 76, 0.35), 0 20px 26px rgba(11, 35, 76, 0.45);
+	transition: transform 130ms ease, box-shadow 150ms ease, filter 150ms ease;
+}
+
+.facil:hover,
+.medio:hover,
+.dificil:hover {
+	transform: translateY(-2px);
+	box-shadow: 0 12px 0 rgba(11, 35, 76, 0.42), 0 24px 32px rgba(11, 35, 76, 0.52);
+	filter: brightness(1.06);
+}
+
+.facil:active,
+.medio:active,
+.dificil:active {
+	transform: translateY(1px);
+	box-shadow: 0 6px 0 rgba(11, 35, 76, 0.32), 0 12px 18px rgba(11, 35, 76, 0.4);
+}
+
+.facil {
+	background: linear-gradient(180deg, #6fdc7f 0%, #36a944 100%);
+}
+
+.medio {
+	background: linear-gradient(180deg, #ffb74d 0%, #ff9100 100%);
+}
+
+.dificil {
+	background: linear-gradient(180deg, #ff5252 0%, #d32f2f 100%);
+}
+
 .boton {
 	border: none;
 	color: #ffffff;
@@ -282,6 +350,21 @@ form {
 	#titulo {
 		font-size: 1.7rem;
 		letter-spacing: 1px;
+	}
+
+	/* Index en pantallas pequeñas */
+	#difultades {
+		flex-direction: column;
+		align-items: stretch;
+		gap: 12px;
+	}
+
+	.facil,
+	.medio,
+	.dificil {
+		width: 100%;
+		padding: 12px 18px;
+		font-size: 1rem;
 	}
 
 	#enviar,
