@@ -164,15 +164,19 @@ function mostrarDificultad(cantidadPJ){
     
     if(cantidadPJ == 10){
         document.querySelector('#dificultad').innerHTML = '<h2 id="dificultad" class="dificultad">Modo Facil</h2>';
+        document.querySelector('#scoreboard').innerHTML = 'ScoreBoard: 0/' + cantidadPJ;
     }
     else if(cantidadPJ == 20) {
         document.querySelector('#dificultad').innerHTML = '<h2 id="dificultad" class="dificultad">Modo Medio</h2>';
+        document.querySelector('#scoreboard').innerHTML = 'ScoreBoard: 0/' + cantidadPJ;
     }
     else if(cantidadPJ == 30){
         document.querySelector('#dificultad').innerHTML = '<h2 id="dificultad" class="dificultad">Modo Dificil</h2>';
+        document.querySelector('#scoreboard').innerHTML = 'ScoreBoard: 0/' + cantidadPJ;
     }
     else{
         document.querySelector('#dificultad').innerHTML = '<h2 id="dificultad" class="dificultad">Modo Dificil</h2>';
+        document.querySelector('#scoreboard').innerHTML = 'ScoreBoard: 0/' + cantidadPJ;
     };
 
 }
